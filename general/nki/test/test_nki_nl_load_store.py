@@ -42,8 +42,8 @@ def example_load_store_b(in_tensor):
   out_tensor = nl.ndarray(in_tensor.shape, in_tensor.dtype,
                           buffer=nl.shared_hbm)
   # NKI_EXAMPLE_15_BEGIN NKI_EXAMPLE_11_BEGIN
+  data_tile = nl.zeros((128, 512), dtype=in_tensor.dtype) 
   for i_b in nl.affine_range(4):
-    data_tile = nl.zeros((128, 512), dtype=in_tensor.dtype) 
     # NKI_EXAMPLE_15_END
     # load from in_tensor[4, 128, 512] one batch at a time
     # copy into data_tile[128, 512]
